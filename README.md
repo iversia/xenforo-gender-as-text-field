@@ -11,7 +11,7 @@ Features
 * Removes gender from the registration form (one less registration hurdle)
 
 ### Why would you want to do this? ###
-1. [Disalienation](http://www.sarahmei.com/blog/2010/11/26/disalienation/)
+1. [Disalienation](http://www.sarahmei.com/blog/2010/11/26/disalienation/).
 1. You really don't care about gender demographics.
 1. You welcome people of all gender presentations.
 1. You don't mind people getting "creative" with their gender presentation.
