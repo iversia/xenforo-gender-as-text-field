@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<addon addon_id="GenderTextField" title="Gender as a Text Field" version_string="1.0.0" version_id="1" url="http://www.iversia.com/" install_callback_class="Iversia_GenderTextfield_Installer" install_callback_method="install" uninstall_callback_class="Iversia_GenderTextfield_Installer" uninstall_callback_method="uninstall">
+<addon addon_id="GenderTextField" title="Gender as a Text Field" version_string="1.1.0" version_id="110" url="http://www.iversia.com/" install_callback_class="Iversia_GenderTextfield_Installer" install_callback_method="install" uninstall_callback_class="Iversia_GenderTextfield_Installer" uninstall_callback_method="uninstall">
   <admin_navigation/>
   <admin_permissions/>
   <admin_style_properties/>
   <admin_templates/>
   <admin_template_modifications>
+    <modification template="helper_criteria_user" modification_key="gtf_helper_criteria_user" description="Replace select option with text box." execution_order="10" enabled="1" action="str_replace">
+      <find><![CDATA[<xen:select name="user_criteria[gender][data][gender]" value="{$userCriteria.gender.gender}" inputclass="autoSize">
+				<xen:option value="">({xen:phrase unspecified})</xen:option>
+				<xen:option value="male">{xen:phrase male}</xen:option>
+				<xen:option value="female">{xen:phrase female}</xen:option>
+			</xen:select>]]></find>
+      <replace><![CDATA[<xen:textbox name="user_criteria[gender][data][gender]" value="{$userCriteria.gender.gender}" size="50" rows="1" inputclass="textCtrl Elastic" />]]></replace>
+    </modification>
+    <modification template="helper_user_search_criteria" modification_key="gtf_helper_user_search_criteria" description="Remove gender search options." execution_order="10" enabled="1" action="str_replace">
+      <find><![CDATA[<xen:checkboxunit label="{xen:phrase gender}:" name="criteria[gender]">
+		<xen:option value="male" selected="{$criteria.gender.male}">{xen:phrase male}</xen:option>
+		<xen:option value="female" selected="{$criteria.gender.female}">{xen:phrase female}</xen:option>
+		<xen:option value="unspecified" selected="{$criteria.gender.unspecified}">({xen:phrase unspecified})</xen:option>
+	</xen:checkboxunit>]]></find>
+      <replace><![CDATA[]]></replace>
+    </modification>
     <modification template="user_edit" modification_key="gtf_user_edit" description="Change radio buttons to text field in admin area." execution_order="10" enabled="1" action="str_replace">
       <find><![CDATA[<xen:radiounit label="{xen:phrase gender}:" name="gender" value="{$user.gender}">
 				<xen:option value="male">{xen:phrase male}</xen:option>
@@ -42,7 +58,11 @@
 				</ul>]]></find>
       <replace><![CDATA[<input type="text" name="gender" value="{$visitor.gender}" id="ctrl_gender" class="textCtrl" />]]></replace>
     </modification>
-    <modification template="member_view" modification_key="gtf_member_view" description="" execution_order="10" enabled="1" action="str_replace">
+    <modification template="member_view" modification_key="gtf_member_view" description="Replace male/female with user's choice." execution_order="10" enabled="1" action="str_replace">
+      <find><![CDATA[<xen:if is="{$user.gender} == 'male'">{xen:phrase male}<xen:else />{xen:phrase female}</xen:if>]]></find>
+      <replace><![CDATA[{$user.gender}]]></replace>
+    </modification>
+    <modification template="message_user_info" modification_key="gtf_message_user_info" description="Replace male/female with user's choice." execution_order="10" enabled="1" action="str_replace">
       <find><![CDATA[<xen:if is="{$user.gender} == 'male'">{xen:phrase male}<xen:else />{xen:phrase female}</xen:if>]]></find>
       <replace><![CDATA[{$user.gender}]]></replace>
     </modification>
