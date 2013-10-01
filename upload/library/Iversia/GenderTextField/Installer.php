@@ -1,6 +1,6 @@
 <?php
 
-class Iversia_GenderTextfield_Installer
+class Iversia_GenderTextField_Installer
 {
     private static $instance;
 

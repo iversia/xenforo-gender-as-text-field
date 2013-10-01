@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<addon addon_id="GenderTextField" title="Gender as a Text Field" version_string="1.1.0" version_id="110" url="http://www.iversia.com/" install_callback_class="Iversia_GenderTextfield_Installer" install_callback_method="install" uninstall_callback_class="Iversia_GenderTextfield_Installer" uninstall_callback_method="uninstall">
+<addon addon_id="GenderTextField" title="Gender as a Text Field" version_string="1.1.1" version_id="111" url="http://www.iversia.com/" install_callback_class="Iversia_GenderTextField_Installer" install_callback_method="install" uninstall_callback_class="Iversia_GenderTextField_Installer" uninstall_callback_method="uninstall">
   <admin_navigation/>
   <admin_permissions/>
   <admin_style_properties/>

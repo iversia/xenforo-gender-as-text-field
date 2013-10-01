@@ -1,6 +1,6 @@
 <?php
 
-class Iversia_GenderTextfield_DataWriter_User extends XFCP_Iversia_GenderTextfield_DataWriter_User
+class Iversia_GenderTextField_DataWriter_User extends XFCP_Iversia_GenderTextField_DataWriter_User
 {
     protected function _getFields()
     {
