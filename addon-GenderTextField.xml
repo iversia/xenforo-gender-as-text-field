@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<addon addon_id="GenderTextField" title="Gender as a Text Field" version_string="1.1.1" version_id="111" url="http://www.iversia.com/" install_callback_class="Iversia_GenderTextField_Installer" install_callback_method="install" uninstall_callback_class="Iversia_GenderTextField_Installer" uninstall_callback_method="uninstall">
+<addon addon_id="GenderTextField" title="Gender as a Text Field" version_string="1.1.2" version_id="112" url="http://www.iversia.com/" install_callback_class="Iversia_GenderTextField_Installer" install_callback_method="install" uninstall_callback_class="Iversia_GenderTextField_Installer" uninstall_callback_method="uninstall">
   <admin_navigation/>
   <admin_permissions/>
   <admin_style_properties/>
@@ -50,6 +50,19 @@
   <style_properties/>
   <templates/>
   <public_template_modifications>
+    <modification template="register_form" modification_key="gtf2_register_form" description="Remove gender field from registration (1.4)" execution_order="15" enabled="1" action="str_replace">
+      <find><![CDATA[<dl class="ctrlUnit">
+		<dt>{xen:phrase gender}:</dt>
+		<dd>
+			<ul>
+				<li><label><input type="radio" name="{$fieldMap.gender}" value="male" {xen:checked "{$fields.gender} == 'male'"} /> {xen:phrase male}</label></li>
+				<li><label><input type="radio" name="{$fieldMap.gender}" value="female" {xen:checked "{$fields.gender} == 'female'"} /> {xen:phrase female}</label></li>
+				<li><label><input type="radio" name="{$fieldMap.gender}" value="" {xen:checked "!{$fields.gender}"} /> ({xen:phrase unspecified})</label></li>
+			</ul>
+		</dd>
+	</dl>]]></find>
+      <replace><![CDATA[]]></replace>
+    </modification>
     <modification template="account_personal_details" modification_key="gtf_account_personal_details" description="Change gender to text field on account details page." execution_order="10" enabled="1" action="str_replace">
       <find><![CDATA[<ul>
 					<li><label for="ctrl_gender_male"><input type="radio" name="gender" value="male" id="ctrl_gender_male" {xen:checked "{$visitor.gender} == 'male'"} /> {xen:phrase male}</label></li>
@@ -66,7 +79,7 @@
       <find><![CDATA[<xen:if is="{$user.gender} == 'male'">{xen:phrase male}<xen:else />{xen:phrase female}</xen:if>]]></find>
       <replace><![CDATA[{$user.gender}]]></replace>
     </modification>
-    <modification template="register_form" modification_key="gtf_register_form" description="Remove gender field from registration" execution_order="10" enabled="1" action="str_replace">
+    <modification template="register_form" modification_key="gtf_register_form" description="Remove gender field from registration (old)" execution_order="10" enabled="1" action="str_replace">
       <find><![CDATA[<dl class="ctrlUnit">
 		<dt>{xen:phrase gender}:</dt>
 		<dd>
@@ -81,4 +94,5 @@
     </modification>
   </public_template_modifications>
   <bb_code_media_sites/>
+  <bb_codes/>
 </addon>
